@@ -29,6 +29,139 @@ $base-font-size: 15;
     src: url("./fonts/fontslexend-deca-v21-latin-700.woff2") format("woff2");
 }
 
+@font-face {
+    font-display: swap;
+    font-family: "Big Shoulders Display", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    src: url("./fonts/big-shoulders-display-v21-latin-700.woff2") format("woff2");
+}
+
 body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
     font-family: "Lexend Deca", sans-serif;
+    background-color: var(--sp-very-light-gray-clr);
+}
+
+.main {
+    max-width: px-to-rem(250);
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include mq-gen(min, w, sm-tab) {
+        max-width: px-to-rem(750);
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+        @include f-b(33%);
+        min-height: px-to-rem(300);
+        padding: px-to-rem(30) px-to-rem(40);
+        @include flex-between-start(col);
+        gap: px-to-rem(15);
+        color: var(--sp-very-light-gray-clr);
+
+        @include mq-gen(min, w, sm-tab) {
+            min-height: px-to-rem(375);
+            gap: px-to-rem(30);
+        }
+
+        &:first-child {
+            $radius: 0;
+
+            border-top-left-radius: $radius;
+            border-bottom-left-radius: $radius;
+
+            @include mq-gen(min, w, sm-tab) {
+                $radius: px-to-rem(6);
+
+                border-top-left-radius: $radius;
+                border-bottom-left-radius: $radius;
+            }
+        }
+
+        &:last-child {
+            $radius: 0;
+
+            border-top-right-radius: $radius;
+            border-bottom-right-radius: $radius;
+
+            @include mq-gen(min, w, sm-tab) {
+                $radius: px-to-rem(6);
+
+                border-top-right-radius: $radius;
+                border-bottom-right-radius: $radius;
+            }
+        }
+
+        &:nth-child(1) {
+            background-color: var(--sp-bright-orange-clr);
+        }
+
+        &:nth-child(2) {
+            background-color: var(--sp-dark-cyan-clr);
+        }
+
+        &:nth-child(3) {
+            background-color: var(--sp-very-dark-cyan-clr);
+        }
+
+        &__top {
+            &__info {
+                .title {
+                    font-family: "Big Shoulders Display", sans-serif;
+                    text-transform: uppercase;
+                }
+
+                .desc {
+                    margin-top: px-to-rem(20);
+                    line-height: px-to-rem(25);
+                    font-size: px-to-rem(13);
+                }
+            }
+        }
+    }
+}
+
+.btn {
+    padding-block: px-to-rem(7);
+    padding-inline: px-to-rem(20);
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: px-to-rem(20);
+    background-color: var(--sp-very-light-gray-clr);
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.33s ease-in;
+
+    &:hover {
+        border-color: var(--sp-transparent-white-clr);
+        background-color: transparent;
+    }
+
+    &.first {
+        color: var(--sp-bright-orange-clr);
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &.second {
+        color: var(--sp-dark-cyan-clr);
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    &.third {
+        color: var(--sp-very-dark-cyan-clr);
+
+        &:hover {
+            color: white;
+        }
+    }
 }
